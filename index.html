@@ -51,6 +51,44 @@
             opacity: 0.9;
         }
 
+        .tab-navigation {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 5px;
+            margin-top: 20px;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            background: transparent;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
         .form-content {
             padding: 40px;
         }
@@ -348,24 +386,55 @@
         .saved-jobs {
             background: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 30px;
+            padding: 30px;
+            margin: 20px;
         }
 
-        .job-item {
+        .saved-jobs h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            text-align: center;
+        }
+
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .job-card {
             background: white;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #ff6b6b;
+            transition: all 0.3s ease;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .job-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
             margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-info {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.4;
         }
 
         .job-actions {
             display: flex;
             gap: 10px;
+            justify-content: flex-end;
         }
 
         .job-btn {
@@ -375,6 +444,7 @@
             cursor: pointer;
             font-size: 0.9em;
             transition: all 0.3s ease;
+            font-weight: bold;
         }
 
         .edit-btn {
@@ -387,28 +457,80 @@
             color: white;
         }
 
-        .export-btn {
+        .print-btn {
             background: #00b894;
             color: white;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .form-content {
-                padding: 20px;
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
+        .view-btn {
+            background: #feca57;
+            color: white;
+        }
+
+        .job-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            background: white;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+        }
+
+        .sort-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .sort-btn {
+            padding: 10px 20px;
+            border: 2px solid #74b9ff;
+            background: white;
+            color: #74b9ff;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .sort-btn.active {
+            background: #74b9ff;
+            color: white;
+        }
+
+        .sort-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(116, 185, 255, 0.3);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            font-size: 1.1em;
+            opacity: 0.8;
         }
 
         .progress-bar {
@@ -446,6 +568,85 @@
         .floating-help:hover {
             transform: scale(1.1);
         }
+
+        /* Estilos para impressão */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+                font-family: 'Times New Roman', serif !important;
+            }
+            
+            .container {
+                max-width: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            .form-card {
+                background: white !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+            }
+            
+            .header {
+                background: white !important;
+                color: black !important;
+                border-bottom: 2px solid #333;
+                page-break-after: avoid;
+            }
+            
+            .tab-navigation, .job-actions, .floating-help, .action-buttons {
+                display: none !important;
+            }
+            
+            .form-section {
+                background: white !important;
+                border: 1px solid #ddd !important;
+                margin-bottom: 20px !important;
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                border-bottom: 1px solid #333;
+                padding-bottom: 10px;
+            }
+            
+            .job-card {
+                background: white !important;
+                border: 1px solid #333 !important;
+                margin-bottom: 20px !important;
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .form-content {
+                padding: 20px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-navigation {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .jobs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -454,206 +655,238 @@
     <div class="container">
         <div class="form-card">
             <div class="header">
-                <h1>Cadastro de Vagas 🚀</h1>
+                <h1>Sistema de Vagas RH 🚀</h1>
                 <p>Crie job descriptions incríveis e divertidas!</p>
-                <div class="progress-bar">
+                
+                <div class="tab-navigation">
+                    <button class="tab-btn active" onclick="switchTab('create', this)">
+                        ✨ Criar Vaga
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('view', this)">
+                        📋 Visualizar Vagas
+                    </button>
+                </div>
+                
+                <div class="progress-bar" id="progressBarContainer">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
             </div>
 
-            <!-- Lista de vagas salvas -->
-            <div class="saved-jobs" id="savedJobs" style="margin: 20px; display: none;">
-                <h3>📋 Vagas Cadastradas</h3>
-                <div id="jobsList"></div>
+            <!-- Aba de Criação -->
+            <div class="tab-content active" id="createTab">
+                <form class="form-content" id="jobForm">
+                    <!-- 1. Identidade do cargo -->
+                    <section class="form-section">
+                        <h2 class="section-title">
+                            <span class="section-icon">🔑</span>
+                            Identidade do Cargo
+                        </h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Nome do Cargo (seja criativo! 🎨)</label>
+                                <input type="text" class="form-input" name="jobTitle" placeholder="Ex: Ninja de Dados, Guardiã do Atendimento, Mestre do Código..." required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Departamento/Time</label>
+                                <input type="text" class="form-input" name="department" placeholder="Ex: Time de Analytics, Esquadrão de Vendas..." required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Responde a (Gestor)</label>
+                                <input type="text" class="form-input" name="manager" placeholder="Ex: Sensei de Dados, Líder Supremo..." required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Modalidade de Trabalho</label>
+                                <select class="form-input form-select" name="workMode" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="remoto">100% Remoto 🏠</option>
+                                    <option value="hibrido">Híbrido 🏢🏠</option>
+                                    <option value="presencial">Presencial 🏢</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Tipo de Contrato</label>
+                                <select class="form-input form-select" name="contractType" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="clt">CLT</option>
+                                    <option value="pj">PJ</option>
+                                    <option value="estagio">Estágio</option>
+                                    <option value="temporario">Temporário</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Localização</label>
+                                <input type="text" class="form-input" name="location" placeholder="Ex: São Paulo - SP, Rio de Janeiro - RJ...">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 2. Missão do cargo -->
+                    <section class="form-section">
+                        <h2 class="section-title">
+                            <span class="section-icon">🎯</span>
+                            Missão do Cargo
+                        </h2>
+                        <div class="form-group">
+                            <label class="form-label">Descreva a missão de forma inspiradora! ✨</label>
+                            <textarea class="form-input form-textarea" name="mission" placeholder="Ex: Você será o elo entre nossos clientes e o nosso produto, garantindo que a mágica aconteça todos os dias..." required></textarea>
+                        </div>
+                    </section>
+
+                    <!-- 3. Responsabilidades -->
+                    <section class="form-section">
+                        <h2 class="section-title">
+                            <span class="section-icon">🧩</span>
+                            Responsabilidades Principais
+                        </h2>
+                        <div class="responsibilities-container">
+                            <div id="responsibilitiesList">
+                                <div class="responsibility-item">
+                                    <span>✨</span>
+                                    <input type="text" class="responsibility-input" placeholder="Ex: Transformar feedbacks em melhorias épicas!" data-name="responsibilities">
+                                    <button type="button" class="remove-btn" onclick="removeItem(this)">×</button>
+                                </div>
+                            </div>
+                            <button type="button" class="add-btn" onclick="addResponsibility()">
+                                ➕ Adicionar Responsabilidade
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- 4. Ferramentas e tecnologias -->
+                    <section class="form-section">
+                        <h2 class="section-title">
+                            <span class="section-icon">🛠️</span>
+                            Ferramentas e Tecnologias
+                        </h2>
+                        <div class="tools-grid" id="toolsGrid">
+                            <div class="tool-input-group">
+                                <label class="form-label">Ferramenta/Tecnologia</label>
+                                <input type="text" class="form-input" placeholder="Ex: Python, Excel, Figma..." data-name="tools">
+                            </div>
+                        </div>
+                        <br>
+                        <button type="button" class="add-btn" onclick="addTool()">
+                            🔧 Adicionar Ferramenta
+                        </button>
+                    </section>
+
+                    <!-- 5. Conhecimentos e experiências -->
+                    <section class="form-section">
+                        <h2 class="section-title">
+                            <span class="section-icon">📚</span>
+                            Conhecimentos e Experiências Desejadas
+                        </h2>
+                        <div class="responsibilities-container">
+                            <div id="requirementsList">
+                                <div class="responsibility-item">
+                                    <span>🎓</span>
+                                    <input type="text" class="responsibility-input" placeholder="Ex: Se você já brincou com Excel como quem faz mágica, é um plus!" data-name="requirements">
+                                    <button type="button" class="remove-btn" onclick="removeItem(this)">×</button>
+                                </div>
+                            </div>
+                            <button type="button" class="add-btn" onclick="addRequirement()">
+                                📖 Adicionar Conhecimento
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- 6. Trilha de crescimento -->
+                    <section class="form-section">
+                        <h2 class="section-title">
+                            <span class="section-icon">🌱</span>
+                            Trilha de Crescimento
+                        </h2>
+                        <div class="growth-path-builder">
+                            <div id="growthPathList">
+                                <div class="growth-step">
+                                    <span class="growth-emoji" onclick="changeEmoji(this)">🥷</span>
+                                    <input type="text" placeholder="Ex: Ninja de Dados" data-name="growthPath">
+                                    <button type="button" class="remove-btn" onclick="removeItem(this)">×</button>
+                                </div>
+                            </div>
+                            <button type="button" class="add-btn" onclick="addGrowthStep()">
+                                🚀 Adicionar Etapa
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- 7. Trilha de aprendizagem -->
+                    <section class="form-section">
+                        <h2 class="section-title">
+                            <span class="section-icon">💡</span>
+                            Trilha de Aprendizagem Sugerida
+                        </h2>
+                        <div class="learning-items" id="learningItems">
+                            <div class="learning-item">
+                                <label class="form-label">📖 Cursos Online</label>
+                                <input type="text" class="form-input" placeholder="Ex: Coursera, Udemy, DataCamp..." data-name="courses">
+                            </div>
+                            <div class="learning-item">
+                                <label class="form-label">🎯 Certificações</label>
+                                <input type="text" class="form-input" placeholder="Ex: Google Analytics, AWS..." data-name="certifications">
+                            </div>
+                            <div class="learning-item">
+                                <label class="form-label">👥 Mentoria</label>
+                                <input type="text" class="form-input" placeholder="Ex: 1:1 com seniors do time..." data-name="mentoring">
+                            </div>
+                            <div class="learning-item">
+                                <label class="form-label">📚 Bibliografia</label>
+                                <input type="text" class="form-input" placeholder="Ex: Livros recomendados..." data-name="books">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 8. Cultura da empresa -->
+                    <section class="form-section">
+                        <h2 class="section-title">
+                            <span class="section-icon">❤️</span>
+                            Nosso Jeito de Ser (Cultura)
+                        </h2>
+                        <div class="form-group">
+                            <label class="form-label">Descreva a cultura da empresa de forma acolhedora</label>
+                            <textarea class="form-input form-textarea" name="culture" placeholder="Ex: Somos uma empresa que acredita que trabalho pode (e deve!) ser divertido. Valorizamos a criatividade, a colaboração..." required></textarea>
+                        </div>
+                    </section>
+
+                    <!-- Botões de ação -->
+                    <div class="action-buttons">
+                        <button type="button" class="btn btn-preview" onclick="previewJob()">
+                            👁️ Preview da Vaga
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            💾 Salvar Vaga
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="clearForm()">
+                            🗑️ Limpar Formulário
+                        </button>
+                    </div>
+                </form>
             </div>
 
-            <form class="form-content" id="jobForm">
-                <!-- 1. Identidade do cargo -->
-                <section class="form-section">
-                    <h2 class="section-title">
-                        <span class="section-icon">🔑</span>
-                        Identidade do Cargo
-                    </h2>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label">Nome do Cargo (seja criativo! 🎨)</label>
-                            <input type="text" class="form-input" name="jobTitle" placeholder="Ex: Ninja de Dados, Guardiã do Atendimento, Mestre do Código..." required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Departamento/Time</label>
-                            <input type="text" class="form-input" name="department" placeholder="Ex: Time de Analytics, Esquadrão de Vendas..." required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Responde a (Gestor)</label>
-                            <input type="text" class="form-input" name="manager" placeholder="Ex: Sensei de Dados, Líder Supremo..." required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Modalidade de Trabalho</label>
-                            <select class="form-input form-select" name="workMode" required>
-                                <option value="">Selecione...</option>
-                                <option value="remoto">100% Remoto 🏠</option>
-                                <option value="hibrido">Híbrido 🏢🏠</option>
-                                <option value="presencial">Presencial 🏢</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Tipo de Contrato</label>
-                            <select class="form-input form-select" name="contractType" required>
-                                <option value="">Selecione...</option>
-                                <option value="clt">CLT</option>
-                                <option value="pj">PJ</option>
-                                <option value="estagio">Estágio</option>
-                                <option value="temporario">Temporário</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Localização</label>
-                            <input type="text" class="form-input" name="location" placeholder="Ex: São Paulo - SP, Rio de Janeiro - RJ...">
-                        </div>
+            <!-- Aba de Visualização -->
+            <div class="tab-content" id="viewTab">
+                <div class="saved-jobs">
+                    <h3>📋 Vagas Cadastradas</h3>
+                    
+                    <input type="text" class="search-bar" id="searchInput" placeholder="🔍 Buscar vagas..." onkeyup="searchJobs()">
+                    
+                    <div class="sort-controls">
+                        <span>Ordenar por:</span>
+                        <button class="sort-btn active" onclick="sortJobs('title')">📝 Nome</button>
+                        <button class="sort-btn" onclick="sortJobs('department')">🏢 Departamento</button>
+                        <button class="sort-btn" onclick="sortJobs('date')">📅 Data</button>
                     </div>
-                </section>
-
-                <!-- 2. Missão do cargo -->
-                <section class="form-section">
-                    <h2 class="section-title">
-                        <span class="section-icon">🎯</span>
-                        Missão do Cargo
-                    </h2>
-                    <div class="form-group">
-                        <label class="form-label">Descreva a missão de forma inspiradora! ✨</label>
-                        <textarea class="form-input form-textarea" name="mission" placeholder="Ex: Você será o elo entre nossos clientes e o nosso produto, garantindo que a mágica aconteça todos os dias..." required></textarea>
+                    
+                    <div class="jobs-grid" id="jobsGrid">
+                        <!-- Jobs serão carregados aqui -->
                     </div>
-                </section>
-
-                <!-- 3. Responsabilidades -->
-                <section class="form-section">
-                    <h2 class="section-title">
-                        <span class="section-icon">🧩</span>
-                        Responsabilidades Principais
-                    </h2>
-                    <div class="responsibilities-container">
-                        <div id="responsibilitiesList">
-                            <div class="responsibility-item">
-                                <span>✨</span>
-                                <input type="text" class="responsibility-input" placeholder="Ex: Transformar feedbacks em melhorias épicas!" data-name="responsibilities">
-                                <button type="button" class="remove-btn" onclick="removeItem(this)">×</button>
-                            </div>
-                        </div>
-                        <button type="button" class="add-btn" onclick="addResponsibility()">
-                            ➕ Adicionar Responsabilidade
-                        </button>
+                    
+                    <div class="empty-state" id="emptyState" style="display: none;">
+                        <h3>🎯 Nenhuma vaga encontrada</h3>
+                        <p>Que tal criar sua primeira job description incrível?</p>
                     </div>
-                </section>
-
-                <!-- 4. Ferramentas e tecnologias -->
-                <section class="form-section">
-                    <h2 class="section-title">
-                        <span class="section-icon">🛠️</span>
-                        Ferramentas e Tecnologias
-                    </h2>
-                    <div class="tools-grid" id="toolsGrid">
-                        <div class="tool-input-group">
-                            <label class="form-label">Ferramenta/Tecnologia</label>
-                            <input type="text" class="form-input" placeholder="Ex: Python, Excel, Figma..." data-name="tools">
-                        </div>
-                    </div>
-                    <br>
-                    <button type="button" class="add-btn" onclick="addTool()">
-                        🔧 Adicionar Ferramenta
-                    </button>
-                </section>
-
-                <!-- 5. Conhecimentos e experiências -->
-                <section class="form-section">
-                    <h2 class="section-title">
-                        <span class="section-icon">📚</span>
-                        Conhecimentos e Experiências Desejadas
-                    </h2>
-                    <div class="responsibilities-container">
-                        <div id="requirementsList">
-                            <div class="responsibility-item">
-                                <span>🎓</span>
-                                <input type="text" class="responsibility-input" placeholder="Ex: Se você já brincou com Excel como quem faz mágica, é um plus!" data-name="requirements">
-                                <button type="button" class="remove-btn" onclick="removeItem(this)">×</button>
-                            </div>
-                        </div>
-                        <button type="button" class="add-btn" onclick="addRequirement()">
-                            📖 Adicionar Conhecimento
-                        </button>
-                    </div>
-                </section>
-
-                <!-- 6. Trilha de crescimento -->
-                <section class="form-section">
-                    <h2 class="section-title">
-                        <span class="section-icon">🌱</span>
-                        Trilha de Crescimento
-                    </h2>
-                    <div class="growth-path-builder">
-                        <div id="growthPathList">
-                            <div class="growth-step">
-                                <span class="growth-emoji" onclick="changeEmoji(this)">🥷</span>
-                                <input type="text" placeholder="Nome do cargo/posição..." data-name="growthPath">
-                                <button type="button" class="remove-btn" onclick="removeItem(this)">×</button>
-                            </div>
-                        </div>
-                        <button type="button" class="add-btn" onclick="addGrowthStep()">
-                            🚀 Adicionar Etapa
-                        </button>
-                    </div>
-                </section>
-
-                <!-- 7. Trilha de aprendizagem -->
-                <section class="form-section">
-                    <h2 class="section-title">
-                        <span class="section-icon">💡</span>
-                        Trilha de Aprendizagem Sugerida
-                    </h2>
-                    <div class="learning-items" id="learningItems">
-                        <div class="learning-item">
-                            <label class="form-label">📖 Cursos Online</label>
-                            <input type="text" class="form-input" placeholder="Ex: Coursera, Udemy, DataCamp..." data-name="courses">
-                        </div>
-                        <div class="learning-item">
-                            <label class="form-label">🎯 Certificações</label>
-                            <input type="text" class="form-input" placeholder="Ex: Google Analytics, AWS..." data-name="certifications">
-                        </div>
-                        <div class="learning-item">
-                            <label class="form-label">👥 Mentoria</label>
-                            <input type="text" class="form-input" placeholder="Ex: 1:1 com seniors do time..." data-name="mentoring">
-                        </div>
-                        <div class="learning-item">
-                            <label class="form-label">📚 Bibliografia</label>
-                            <input type="text" class="form-input" placeholder="Ex: Livros recomendados..." data-name="books">
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 8. Cultura da empresa -->
-                <section class="form-section">
-                    <h2 class="section-title">
-                        <span class="section-icon">❤️</span>
-                        Nosso Jeito de Ser (Cultura)
-                    </h2>
-                    <div class="form-group">
-                        <label class="form-label">Descreva a cultura da empresa de forma acolhedora</label>
-                        <textarea class="form-input form-textarea" name="culture" placeholder="Ex: Somos uma empresa que acredita que trabalho pode (e deve!) ser divertido. Valorizamos a criatividade, a colaboração..." required></textarea>
-                    </div>
-                </section>
-
-                <!-- Botões de ação -->
-                <div class="action-buttons">
-                    <button type="button" class="btn btn-preview" onclick="previewJob()">
-                        👁️ Preview da Vaga
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                        💾 Salvar Vaga
-                    </button>
-                    <button type="button" class="btn btn-secondary" onclick="clearForm()">
-                        🗑️ Limpar Formulário
-                    </button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -667,8 +900,10 @@
 
     <script>
         let savedJobs = JSON.parse(localStorage.getItem('savedJobs') || '[]');
+        let currentEditingId = null;
+        let currentSortBy = 'title';
         
-        // Carregar vagas salvas ao inicializar
+        // Carregar dados ao inicializar
         document.addEventListener('DOMContentLoaded', function() {
             updateProgress();
             displaySavedJobs();
@@ -678,7 +913,36 @@
             inputs.forEach(input => {
                 input.addEventListener('input', updateProgress);
             });
+
+            // Adicionar evento de submit ao formulário
+            document.getElementById('jobForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveJob();
+            });
         });
+
+        // Função para trocar abas
+        function switchTab(tabName, button) {
+            // Remover classe active de todos os botões
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Esconder todos os conteúdos
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Mostrar conteúdo da aba selecionada
+            document.getElementById(tabName + 'Tab').classList.add('active');
+            
+            // Mostrar/esconder barra de progresso
+            const progressContainer = document.getElementById('progressBarContainer');
+            if (tabName === 'create') {
+                progressContainer.style.display = 'block';
+                updateProgress();
+            } else {
+                progressContainer.style.display = 'none';
+                displaySavedJobs();
+            }
+        }
 
         function updateProgress() {
             const requiredFields = document.querySelectorAll('input[required], textarea[required], select[required]');
@@ -791,8 +1055,13 @@
                 formData.learning[field] = element ? element.value : '';
             });
 
-            formData.id = Date.now(); // ID único
-            formData.createdAt = new Date().toLocaleString('pt-BR');
+            if (!currentEditingId) {
+                formData.id = Date.now(); // ID único
+                formData.createdAt = new Date().toLocaleString('pt-BR');
+            } else {
+                formData.id = currentEditingId;
+                formData.createdAt = savedJobs.find(job => job.id === currentEditingId)?.createdAt || new Date().toLocaleString('pt-BR');
+            }
 
             return formData;
         }
@@ -801,43 +1070,516 @@
             const jobData = collectFormData();
             let previewHTML = `
                 <div style="text-align: center; margin-bottom: 30px;">
-                    <h1 style="color: #ff6b6b; margin-bottom: 10px;">${jobData.jobTitle}</h1>
-                    <p style="font-size: 1.2em;">Cargo: ${jobData.department}</p>
-                    <p style="font-size: 1.1em;">Local: ${jobData.location || 'Não especificado'}</p>
+                    <h1 style="color: #ff6b6b; margin-bottom: 10px;">${jobData.jobTitle || 'Título da Vaga'}</h1>
+                    <p style="color: #666; font-size: 1.2em;">${jobData.department || 'Departamento'} | ${jobData.location || 'Localização'}</p>
+                    <p style="color: #666;">${jobData.workMode || 'Modalidade'} • ${jobData.contractType || 'Tipo de Contrato'}</p>
                 </div>
 
-                <section style="margin-bottom: 30px;">
-                    <h2 style="font-size: 1.8em; margin-bottom: 10px; color: #333;">🎯 Missão do Cargo</h2>
-                    <p>${jobData.mission || 'Nenhuma missão definida.'}</p>
-                </section>
+                <div style="margin-bottom: 30px;">
+                    <h2 style="color: #333; border-bottom: 2px solid #ff6b6b; padding-bottom: 10px;">🎯 Missão do Cargo</h2>
+                    <p style="line-height: 1.6; margin-top: 15px;">${jobData.mission || 'Missão não definida'}</p>
+                </div>
 
-                <section style="margin-bottom: 30px;">
-                    <h2 style="font-size: 1.8em; margin-bottom: 10px; color: #333;">🧩 Responsabilidades</h2>
-                    <ul>
-                        ${jobData.responsibilities.map(resp => `<li>${resp}</li>`).join('') || '<li>Nenhuma responsabilidade definida.</li>'}
+                <div style="margin-bottom: 30px;">
+                    <h2 style="color: #333; border-bottom: 2px solid #00b894; padding-bottom: 10px;">🧩 Responsabilidades</h2>
+                    <ul style="margin-top: 15px; padding-left: 20px;">
+                        ${jobData.responsibilities.map(resp => `<li style="margin-bottom: 8px;">${resp}</li>`).join('')}
                     </ul>
-                </section>
+                </div>
 
-                <section style="margin-bottom: 30px;">
-                    <h2 style="font-size: 1.8em; margin-bottom: 10px; color: #333;">🛠️ Ferramentas e Tecnologias</h2>
-                    <ul>
-                        ${jobData.tools.map(tool => `<li>${tool}</li>`).join('') || '<li>Nenhuma ferramenta especificada.</li>'}
+                ${jobData.tools.length > 0 ? `
+                <div style="margin-bottom: 30px;">
+                    <h2 style="color: #333; border-bottom: 2px solid #74b9ff; padding-bottom: 10px;">🛠️ Ferramentas e Tecnologias</h2>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
+                        ${jobData.tools.map(tool => `<span style="background: #f0f0f0; padding: 5px 12px; border-radius: 15px; font-size: 0.9em;">${tool}</span>`).join('')}
+                    </div>
+                </div>
+                ` : ''}
+
+                ${jobData.requirements.length > 0 ? `
+                <div style="margin-bottom: 30px;">
+                    <h2 style="color: #333; border-bottom: 2px solid #fdcb6e; padding-bottom: 10px;">📚 Conhecimentos Desejados</h2>
+                    <ul style="margin-top: 15px; padding-left: 20px;">
+                        ${jobData.requirements.map(req => `<li style="margin-bottom: 8px;">${req}</li>`).join('')}
                     </ul>
-                </section>
+                </div>
+                ` : ''}
 
-                <section style="margin-bottom: 30px;">
-                    <h2 style="font-size: 1.8em; margin-bottom: 10px; color: #333;">📚 Conhecimentos e Experiências</h2>
-                    <ul>
-                        ${jobData.requirements.map(req => `<li>${req}</li>`).join('') || '<li>Nenhum conhecimento especificado.</li>'}
-                    </ul>
-                </section>
+                ${jobData.growthPath.length > 0 ? `
+                <div style="margin-bottom: 30px;">
+                    <h2 style="color: #333; border-bottom: 2px solid #a29bfe; padding-bottom: 10px;">🌱 Trilha de Crescimento</h2>
+                    <div style="margin-top: 15px;">
+                        ${jobData.growthPath.map(step => `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;"><span style="font-size: 1.5em;">${step.emoji}</span><span>${step.title}</span></div>`).join('')}
+                    </div>
+                </div>
+                ` : ''}
 
-                <section style="margin-bottom: 30px;">
-                    <h2 style="font-size: 1.8em; margin-bottom: 10px; color: #333;">🌱 Trilha de Crescimento</h2>
-                    <ul style="list-style: none; padding: 0;">
-                        ${jobData.growthPath.map(step => `<li style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;"><span style="font-size: 1.5em;">${step.emoji}</span> ${step.title}</li>`).join('') || '<li>Nenhuma etapa definida.</li>'}
-                    </ul>
-                </section>
+                <div style="margin-bottom: 30px;">
+                    <h2 style="color: #333; border-bottom: 2px solid #e84393; padding-bottom: 10px;">❤️ Nossa Cultura</h2>
+                    <p style="line-height: 1.6; margin-top: 15px;">${jobData.culture || 'Cultura não definida'}</p>
+                </div>
 
-                <section style="margin-bottom: 30px;">
-                    <h2 style="font-size: 1.8em; margin-bottom: 10px; color: #333;">
+                <div style="text-align: center; margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                    <p style="color: #666; font-size: 0.9em;">Gestor: ${jobData.manager || 'Não definido'}</p>
+                    <p style="color: #666; font-size: 0.9em;">Criado em: ${jobData.createdAt || new Date().toLocaleString('pt-BR')}</p>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button onclick="printPreview()" style="background: #00b894; color: white; border: none; padding: 12px 24px; border-radius: 25px; cursor: pointer; font-weight: bold; margin-right: 10px;">🖨️ Imprimir</button>
+                    <button onclick="closePreview()" style="background: #636e72; color: white; border: none; padding: 12px 24px; border-radius: 25px; cursor: pointer; font-weight: bold;">❌ Fechar</button>
+                </div>
+            `;
+            
+            document.getElementById('previewContent').innerHTML = previewHTML;
+            document.getElementById('previewModal').style.display = 'block';
+        }
+
+        function printPreview() {
+            window.print();
+        }
+
+        function closePreview() {
+            document.getElementById('previewModal').style.display = 'none';
+        }
+
+        function saveJob() {
+            const jobData = collectFormData();
+            
+            if (!jobData.jobTitle.trim()) {
+                alert('Por favor, preencha o nome do cargo!');
+                return;
+            }
+
+            if (currentEditingId) {
+                // Editar vaga existente
+                const jobIndex = savedJobs.findIndex(job => job.id === currentEditingId);
+                if (jobIndex !== -1) {
+                    savedJobs[jobIndex] = jobData;
+                }
+                currentEditingId = null;
+            } else {
+                // Adicionar nova vaga
+                savedJobs.push(jobData);
+            }
+            
+            localStorage.setItem('savedJobs', JSON.stringify(savedJobs));
+            
+            alert('Vaga salva com sucesso! 🎉');
+            clearForm();
+            displaySavedJobs();
+        }
+
+        function clearForm() {
+            document.getElementById('jobForm').reset();
+            currentEditingId = null;
+            
+            // Limpar campos dinâmicos
+            document.getElementById('responsibilitiesList').innerHTML = `
+                <div class="responsibility-item">
+                    <span>✨</span>
+                    <input type="text" class="responsibility-input" placeholder="Ex: Transformar feedbacks em melhorias épicas!" data-name="responsibilities">
+                    <button type="button" class="remove-btn" onclick="removeItem(this)">×</button>
+                </div>
+            `;
+            
+            document.getElementById('requirementsList').innerHTML = `
+                <div class="responsibility-item">
+                    <span>🎓</span>
+                    <input type="text" class="responsibility-input" placeholder="Ex: Se você já brincou com Excel como quem faz mágica, é um plus!" data-name="requirements">
+                    <button type="button" class="remove-btn" onclick="removeItem(this)">×</button>
+                </div>
+            `;
+            
+            document.getElementById('toolsGrid').innerHTML = `
+                <div class="tool-input-group">
+                    <label class="form-label">Ferramenta/Tecnologia</label>
+                    <input type="text" class="form-input" placeholder="Ex: Python, Excel, Figma..." data-name="tools">
+                </div>
+            `;
+            
+            document.getElementById('growthPathList').innerHTML = `
+                <div class="growth-step">
+                    <span class="growth-emoji" onclick="changeEmoji(this)">🥷</span>
+                    <input type="text" placeholder="Ex: Ninja de Dados" data-name="growthPath">
+                    <button type="button" class="remove-btn" onclick="removeItem(this)">×</button>
+                </div>
+            `;
+            
+            updateProgress();
+        }
+
+        function displaySavedJobs() {
+            const jobsGrid = document.getElementById('jobsGrid');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (savedJobs.length === 0) {
+                jobsGrid.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            jobsGrid.style.display = 'grid';
+            emptyState.style.display = 'none';
+            
+            // Ordenar jobs
+            const sortedJobs = [...savedJobs].sort((a, b) => {
+                switch(currentSortBy) {
+                    case 'title':
+                        return a.jobTitle.localeCompare(b.jobTitle);
+                    case 'department':
+                        return a.department.localeCompare(b.department);
+                    case 'date':
+                        return new Date(b.createdAt) - new Date(a.createdAt);
+                    default:
+                        return 0;
+                }
+            });
+            
+            jobsGrid.innerHTML = sortedJobs.map(job => `
+                <div class="job-card">
+                    <div class="job-title">${job.jobTitle}</div>
+                    <div class="job-info">
+                        <strong>🏢 ${job.department}</strong><br>
+                        📍 ${job.location || 'Localização não definida'}<br>
+                        🏠 ${job.workMode || 'Modalidade não definida'}<br>
+                        📅 Criado em: ${job.createdAt}
+                    </div>
+                    <div class="job-actions">
+                        <button class="job-btn view-btn" onclick="viewJob(${job.id})">👁️ Ver</button>
+                        <button class="job-btn edit-btn" onclick="editJob(${job.id})">✏️ Editar</button>
+                        <button class="job-btn print-btn" onclick="printJob(${job.id})">🖨️ Imprimir</button>
+                        <button class="job-btn delete-btn" onclick="deleteJob(${job.id})">🗑️ Excluir</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function searchJobs() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filteredJobs = savedJobs.filter(job => 
+                job.jobTitle.toLowerCase().includes(searchTerm) ||
+                job.department.toLowerCase().includes(searchTerm) ||
+                job.location.toLowerCase().includes(searchTerm)
+            );
+            
+            const jobsGrid = document.getElementById('jobsGrid');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (filteredJobs.length === 0) {
+                jobsGrid.style.display = 'none';
+                emptyState.style.display = 'block';
+                emptyState.innerHTML = `
+                    <h3>🔍 Nenhuma vaga encontrada</h3>
+                    <p>Tente usar outros termos de busca</p>
+                `;
+                return;
+            }
+            
+            jobsGrid.style.display = 'grid';
+            emptyState.style.display = 'none';
+            
+            // Ordenar resultados filtrados
+            const sortedJobs = [...filteredJobs].sort((a, b) => {
+                switch(currentSortBy) {
+                    case 'title':
+                        return a.jobTitle.localeCompare(b.jobTitle);
+                    case 'department':
+                        return a.department.localeCompare(b.department);
+                    case 'date':
+                        return new Date(b.createdAt) - new Date(a.createdAt);
+                    default:
+                        return 0;
+                }
+            });
+            
+            jobsGrid.innerHTML = sortedJobs.map(job => `
+                <div class="job-card">
+                    <div class="job-title">${job.jobTitle}</div>
+                    <div class="job-info">
+                        <strong>🏢 ${job.department}</strong><br>
+                        📍 ${job.location || 'Localização não definida'}<br>
+                        🏠 ${job.workMode || 'Modalidade não definida'}<br>
+                        📅 Criado em: ${job.createdAt}
+                    </div>
+                    <div class="job-actions">
+                        <button class="job-btn view-btn" onclick="viewJob(${job.id})">👁️ Ver</button>
+                        <button class="job-btn edit-btn" onclick="editJob(${job.id})">✏️ Editar</button>
+                        <button class="job-btn print-btn" onclick="printJob(${job.id})">🖨️ Imprimir</button>
+                        <button class="job-btn delete-btn" onclick="deleteJob(${job.id})">🗑️ Excluir</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function sortJobs(sortBy) {
+            currentSortBy = sortBy;
+            
+            // Atualizar botões de ordenação
+            document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            displaySavedJobs();
+        }
+
+        function viewJob(jobId) {
+            const job = savedJobs.find(j => j.id === jobId);
+            if (!job) return;
+            
+            // Usar a função de preview existente
+            const originalFormData = collectFormData;
+            
+            // Temporariamente substituir collectFormData para retornar os dados da vaga
+            window.collectFormData = () => job;
+            
+            previewJob();
+            
+            // Restaurar função original
+            window.collectFormData = originalFormData;
+        }
+
+        function editJob(jobId) {
+            const job = savedJobs.find(j => j.id === jobId);
+            if (!job) return;
+            
+            currentEditingId = jobId;
+            
+            // Preencher formulário com dados da vaga
+            document.querySelector('[name="jobTitle"]').value = job.jobTitle || '';
+            document.querySelector('[name="department"]').value = job.department || '';
+            document.querySelector('[name="manager"]').value = job.manager || '';
+            document.querySelector('[name="workMode"]').value = job.workMode || '';
+            document.querySelector('[name="contractType"]').value = job.contractType || '';
+            document.querySelector('[name="location"]').value = job.location || '';
+            document.querySelector('[name="mission"]').value = job.mission || '';
+            document.querySelector('[name="culture"]').value = job.culture || '';
+            
+            // Preencher responsabilidades
+            const responsibilitiesContainer = document.getElementById('responsibilitiesList');
+            responsibilitiesContainer.innerHTML = '';
+            if (job.responsibilities && job.responsibilities.length > 0) {
+                job.responsibilities.forEach(resp => {
+                    const item = document.createElement('div');
+                    item.className = 'responsibility-item';
+                    item.innerHTML = `
+                        <span>✨</span>
+                        <input type="text" class="responsibility-input" value="${resp}" data-name="responsibilities">
+                        <button type="button" class="remove-btn" onclick="removeItem(this)">×</button>
+                    `;
+                    responsibilitiesContainer.appendChild(item);
+                });
+            } else {
+                addResponsibility();
+            }
+            
+            // Preencher conhecimentos
+            const requirementsContainer = document.getElementById('requirementsList');
+            requirementsContainer.innerHTML = '';
+            if (job.requirements && job.requirements.length > 0) {
+                job.requirements.forEach(req => {
+                    const item = document.createElement('div');
+                    item.className = 'responsibility-item';
+                    item.innerHTML = `
+                        <span>🎓</span>
+                        <input type="text" class="responsibility-input" value="${req}" data-name="requirements">
+                        <button type="button" class="remove-btn" onclick="removeItem(this)">×</button>
+                    `;
+                    requirementsContainer.appendChild(item);
+                });
+            } else {
+                addRequirement();
+            }
+            
+            // Preencher ferramentas
+            const toolsContainer = document.getElementById('toolsGrid');
+            toolsContainer.innerHTML = '';
+            if (job.tools && job.tools.length > 0) {
+                job.tools.forEach(tool => {
+                    const item = document.createElement('div');
+                    item.className = 'tool-input-group';
+                    item.innerHTML = `
+                        <label class="form-label">Ferramenta/Tecnologia</label>
+                        <input type="text" class="form-input" value="${tool}" data-name="tools">
+                        <button type="button" class="remove-btn" onclick="removeItem(this.parentElement)" style="margin-top: 10px;">× Remover</button>
+                    `;
+                    toolsContainer.appendChild(item);
+                });
+            } else {
+                addTool();
+            }
+            
+            // Preencher trilha de crescimento
+            const growthContainer = document.getElementById('growthPathList');
+            growthContainer.innerHTML = '';
+            if (job.growthPath && job.growthPath.length > 0) {
+                job.growthPath.forEach(step => {
+                    const item = document.createElement('div');
+                    item.className = 'growth-step';
+                    item.innerHTML = `
+                        <span class="growth-emoji" onclick="changeEmoji(this)">${step.emoji || '🥷'}</span>
+                        <input type="text" placeholder="Nome do cargo/posição..." value="${step.title}" data-name="growthPath">
+                        <button type="button" class="remove-btn" onclick="removeItem(this)">×</button>
+                    `;
+                    growthContainer.appendChild(item);
+                });
+            } else {
+                addGrowthStep();
+            }
+            
+            // Preencher dados de aprendizagem
+            if (job.learning) {
+                const learningFields = ['courses', 'certifications', 'mentoring', 'books'];
+                learningFields.forEach(field => {
+                    const element = document.querySelector(`[data-name="${field}"]`);
+                    if (element) {
+                        element.value = job.learning[field] || '';
+                    }
+                });
+            }
+            
+            // Trocar para aba de criação
+            document.querySelector('.tab-btn').click();
+            
+            alert('Vaga carregada para edição! ✏️');
+        }
+
+        function printJob(jobId) {
+            const job = savedJobs.find(j => j.id === jobId);
+            if (!job) return;
+            
+            // Criar conteúdo para impressão
+            const printContent = `
+                <html>
+                <head>
+                    <title>Job Description - ${job.jobTitle}</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
+                        h1 { color: #ff6b6b; text-align: center; border-bottom: 3px solid #ff6b6b; padding-bottom: 10px; }
+                        h2 { color: #333; border-bottom: 2px solid #ddd; padding-bottom: 5px; margin-top: 30px; }
+                        .header-info { text-align: center; margin-bottom: 30px; color: #666; }
+                        .section { margin-bottom: 25px; }
+                        ul { padding-left: 20px; }
+                        li { margin-bottom: 5px; }
+                        .tools { display: flex; flex-wrap: wrap; gap: 10px; }
+                        .tool-tag { background: #f0f0f0; padding: 5px 10px; border-radius: 15px; font-size: 0.9em; }
+                        .growth-path { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+                        .footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 0.9em; }
+                    </style>
+                </head>
+                <body>
+                    <h1>${job.jobTitle}</h1>
+                    <div class="header-info">
+                        <p><strong>${job.department}</strong> | ${job.location || 'Localização não definida'}</p>
+                        <p>${job.workMode || 'Modalidade não definida'} • ${job.contractType || 'Tipo de contrato não definido'}</p>
+                    </div>
+
+                    <div class="section">
+                        <h2>🎯 Missão do Cargo</h2>
+                        <p>${job.mission || 'Missão não definida'}</p>
+                    </div>
+
+                    ${job.responsibilities && job.responsibilities.length > 0 ? `
+                    <div class="section">
+                        <h2>🧩 Responsabilidades Principais</h2>
+                        <ul>
+                            ${job.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
+                        </ul>
+                    </div>
+                    ` : ''}
+
+                    ${job.tools && job.tools.length > 0 ? `
+                    <div class="section">
+                        <h2>🛠️ Ferramentas e Tecnologias</h2>
+                        <div class="tools">
+                            ${job.tools.map(tool => `<span class="tool-tag">${tool}</span>`).join('')}
+                        </div>
+                    </div>
+                    ` : ''}
+
+                    ${job.requirements && job.requirements.length > 0 ? `
+                    <div class="section">
+                        <h2>📚 Conhecimentos e Experiências Desejadas</h2>
+                        <ul>
+                            ${job.requirements.map(req => `<li>${req}</li>`).join('')}
+                        </ul>
+                    </div>
+                    ` : ''}
+
+                    ${job.growthPath && job.growthPath.length > 0 ? `
+                    <div class="section">
+                        <h2>🌱 Trilha de Crescimento</h2>
+                        ${job.growthPath.map(step => `<div class="growth-path"><span style="font-size: 1.2em;">${step.emoji}</span><span>${step.title}</span></div>`).join('')}
+                    </div>
+                    ` : ''}
+
+                    ${job.learning && (job.learning.courses || job.learning.certifications || job.learning.mentoring || job.learning.books) ? `
+                    <div class="section">
+                        <h2>💡 Trilha de Aprendizagem</h2>
+                        ${job.learning.courses ? `<p><strong>📖 Cursos:</strong> ${job.learning.courses}</p>` : ''}
+                        ${job.learning.certifications ? `<p><strong>🎯 Certificações:</strong> ${job.learning.certifications}</p>` : ''}
+                        ${job.learning.mentoring ? `<p><strong>👥 Mentoria:</strong> ${job.learning.mentoring}</p>` : ''}
+                        ${job.learning.books ? `<p><strong>📚 Bibliografia:</strong> ${job.learning.books}</p>` : ''}
+                    </div>
+                    ` : ''}
+
+                    <div class="section">
+                        <h2>❤️ Nossa Cultura</h2>
+                        <p>${job.culture || 'Cultura não definida'}</p>
+                    </div>
+
+                    <div class="footer">
+                        <p><strong>Gestor:</strong> ${job.manager || 'Não definido'}</p>
+                        <p><strong>Documento criado em:</strong> ${job.createdAt}</p>
+                    </div>
+                </body>
+                </html>
+            `;
+            
+            // Abrir nova janela para impressão
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(printContent);
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+        }
+
+        function deleteJob(jobId) {
+            if (confirm('Tem certeza que deseja excluir esta vaga? Esta ação não pode ser desfeita.')) {
+                savedJobs = savedJobs.filter(job => job.id !== jobId);
+                localStorage.setItem('savedJobs', JSON.stringify(savedJobs));
+                displaySavedJobs();
+                alert('Vaga excluída com sucesso! 🗑️');
+            }
+        }
+
+        function showHelp() {
+            alert(`
+🚀 AJUDA - Sistema de Vagas RH
+
+✨ CRIAR VAGA:
+• Preencha todos os campos obrigatórios
+• Use emojis e linguagem divertida
+• Adicione quantas responsabilidades quiser
+• Clique nos emojis da trilha de crescimento para trocar
+
+📋 VISUALIZAR VAGAS:
+• Busque por nome, departamento ou localização
+• Ordene por nome, departamento ou data
+• Use os botões para ver, editar, imprimir ou excluir
+
+🖨️ IMPRESSÃO:
+• Versão otimizada para impressão
+• Layout profissional em preto e branco
+• Ideal para documentação oficial
+
+💡 DICAS:
+• Seja criativo nos títulos dos cargos!
+• Use linguagem inspiradora na missão
+• Adicione ferramentas específicas
+• Descreva a cultura de forma acolhedora
+
+Divirta-se criando job descriptions incríveis! 🎉
+            `);
+        }
+    </script>
+</body>
+</html>
